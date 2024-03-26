@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT" verbose="0">
+  <test thread-count="5" name="SubmitOrder Test(failed)" verbose="0">
+    <classes>
+      <class name="SrishtiPackage.Tests.SubmitOrderTest">
+        <methods>
+          <include name="checkOrderInOrders"/>
+          <include name="launchApplication"/>
+          <include name="submitOrder" invocation-numbers="0 1"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- SrishtiPackage.Tests.SubmitOrderTest -->
+    </classes>
+  </test> <!-- SubmitOrder Test(failed) -->
+  <test thread-count="5" name="ErrorValidationTest Test(failed)" verbose="0">
+    <classes>
+      <class name="SrishtiPackage.Tests.ErrorValidationTest">
+        <methods>
+          <include name="launchApplication"/>
+          <include name="errorValidationLoginPage"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- SrishtiPackage.Tests.ErrorValidationTest -->
+    </classes>
+  </test> <!-- ErrorValidationTest Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="tests">
+	<listeners>
+		<listener class-name="srishtiPakage.TestComponents.Listeners"></listener>
+	</listeners>
+	
+	
+	<test thread-count="5" name="SubmitOrder Test">
+		<classes>
+
+			<class name="SrishtiPackage.Tests.SubmitOrderTest" />
+
+		</classes>
+	</test>
+	
+
+	<test thread-count="5" name="ErrorValidationTest Test">
+		<classes>
+
+			<class name="SrishtiPackage.Tests.ErrorValidationTest" />
+
+		</classes>
+	</test>
+
+	
+	
+</suite> <!--
+Suite -->
