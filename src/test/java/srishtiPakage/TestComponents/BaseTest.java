@@ -26,19 +26,20 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import sripackage.pageobjects.LandingPage;
+import sripackage.resources.ConfigReaderProperties;
 
 public class BaseTest {
 	
 	public WebDriver driver;
 	public ChromeOptions options;
 	public LandingPage landingPage;
-	
+	public Properties prop;
 	@SuppressWarnings("deprecation")
 	public WebDriver initializeDriver() throws IOException {
-		
+		/*
 		//properties class
 		
-		Properties prop=new Properties();
+	    prop=new Properties();
 		
 		//as load() takes Input stream as argument,thus converting GlobalData.properties file
 		//into Input stream using FileInputStream class object= fis
@@ -52,6 +53,10 @@ public class BaseTest {
 		
 		//getting "browser" property value from GlobalData.properties file
 		//String browserName=prop.getProperty("browser");//line 1
+		*/
+		
+		// ✅ delegate to ConfigReader — no manual loading
+	    prop = ConfigReaderProperties.getProperties();
 		
 		//as we may get global data from maven cmd also so instead of line 1 write below
 		//if we get browser value from maven then it will be preferred else GlobalData.properties file
@@ -110,20 +115,21 @@ public class BaseTest {
 	}
 
 	
-   public List<HashMap<String, String>> getDataJsonToMap(String filePath) throws IOException {
-		
-		//read json to string
-		String jsonContent=FileUtils.readFileToString(new File(filePath)
-				,StandardCharsets.UTF_8);
-	
-	    //string to hashmap-- by jackson databind denpendency
-		ObjectMapper mapper=new ObjectMapper();
-		
-		  //read values from json file and we want that hashmap to be in list
-		List<HashMap<String,String>> data=mapper.readValue(jsonContent, new TypeReference<List<HashMap<String,String>>>(){
-		});//reading json  string values and converting hashmap inside jason to List
-		
-		return data;
-		}
-	}
-
+/*
+ * public List<HashMap<String, String>> getDataJsonToMap(String filePath) throws
+ * IOException {
+ * 
+ * //read json to string String jsonContent=FileUtils.readFileToString(new
+ * File(filePath) ,StandardCharsets.UTF_8);
+ * 
+ * //string to hashmap-- by jackson databind denpendency ObjectMapper mapper=new
+ * ObjectMapper();
+ * 
+ * //read values from json file and we want that hashmap to be in list
+ * List<HashMap<String,String>> data=mapper.readValue(jsonContent, new
+ * TypeReference<List<HashMap<String,String>>>(){ });//reading json string
+ * values and converting hashmap inside jason to List
+ * 
+ * return data; } 
+ */
+}

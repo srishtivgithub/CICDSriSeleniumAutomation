@@ -12,20 +12,21 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class DataReader {
-
-	public List<HashMap<String, String>> getDataJsonToMap() throws IOException {
+//made it static so that other classes can use it without creating object
+	 public static List<HashMap<String, String>> getDataJsonToMap(String filePath) throws IOException {
+			
+			//read json to string
+			String jsonContent=FileUtils.readFileToString(new File(filePath)
+					,StandardCharsets.UTF_8);
 		
-		//read json to string
-		String jsonContent=FileUtils.readFileToString(new File(System.getProperty("user.dir")+"\\src\\test\\java\\SrishtiPackage\\data\\PurchaseOrder.json")
-				,StandardCharsets.UTF_8);
-	
-	    //string to hashmap-- by jackson databind denpendency
-		ObjectMapper mapper=new ObjectMapper();
-		List<HashMap<String,String>> data=mapper.readValue(jsonContent, new TypeReference<List<HashMap<String,String>>>(){
-		});
-		
-		return data;
+		    //string to hashmap-- by jackson databind denpendency
+			ObjectMapper mapper=new ObjectMapper();
+			
+			  //read values from json file and we want that hashmap to be in list
+			List<HashMap<String,String>> data=mapper.readValue(jsonContent, new TypeReference<List<HashMap<String,String>>>(){
+			});//reading json  string values and converting hashmap inside jason to List
+			
+			return data;
+			}
 		}
-	}
-	
 
