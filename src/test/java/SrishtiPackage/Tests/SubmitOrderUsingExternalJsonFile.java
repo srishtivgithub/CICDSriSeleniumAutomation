@@ -20,6 +20,8 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import SrishtiPackage.data.DataProviderUtility;
+import SrishtiPackage.data.DataReader;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import sripackage.pageobjects.CartPage;
 import sripackage.pageobjects.CheckOutPage;
@@ -34,7 +36,10 @@ public class SubmitOrderUsingExternalJsonFile extends BaseTest {
 	// by using dataprovider
 	String prodName = "ADIDAS ORIGINAL";
 
-	@Test(dataProvider = "getData", groups = { "Purchase" })
+	//dataProvider = "getData"->What method to call? ->method name= "getData"
+	//dataProviderClass = DataProviderUtility.class->Where to find that method?-> in DataProviderUtility.class
+	//when dataProvider is in external class, then must use dataProviderClass
+	@Test(dataProvider = "getData",dataProviderClass = DataProviderUtility.class, groups = { "Purchase" })
 	public void submitOrder(HashMap<String, String> value) throws IOException, InterruptedException {
 
 		// drive object creation within page object classes encapsulating from test
@@ -73,14 +78,19 @@ public class SubmitOrderUsingExternalJsonFile extends BaseTest {
 		Boolean match = orderPage.verifyProductInOrdersPage(prodName);
 		Assert.assertTrue(match);
 	}
-
-	@DataProvider
-	public Object[][] getData() throws IOException {
-		List<HashMap<String,String>> data=getDataJsonToMap(System.getProperty("user.dir")+"\\src\\test\\java\\SrishtiPackage\\data\\PurchaseOrder.json");
-
-		return new Object[][] { { data.get(0) }, { data.get(1) } };
-
-	}
+	/*
+	 * //this dataProvider takes value from json file->stores data in list<Hashmap>
+	 * and returns the list of hashmaps
+	 * 
+	 * @DataProvider public Object[][] getData() throws IOException {
+	 * List<HashMap<String,String>>
+	 * data=DataReader.getDataJsonToMap(System.getProperty("user.dir")+
+	 * "\\src\\test\\java\\SrishtiPackage\\data\\PurchaseOrder.json");
+	 * 
+	 * return new Object[][] { { data.get(0) }, { data.get(1) } };
+	 * 
+	 * }
+	 */
 	
 	
 }

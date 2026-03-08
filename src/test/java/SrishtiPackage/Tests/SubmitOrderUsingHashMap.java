@@ -16,6 +16,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import SrishtiPackage.data.DataProviderUtility;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import sripackage.pageobjects.CartPage;
 import sripackage.pageobjects.CheckOutPage;
@@ -30,7 +31,7 @@ public class SubmitOrderUsingHashMap extends BaseTest {
 	// by using dataprovider
 	String prodName = "ADIDAS ORIGINAL";
 
-	@Test(dataProvider = "getData", groups = { "Purchase" })
+	@Test(dataProvider = "getDataHashMapInternal", dataProviderClass = DataProviderUtility.class, groups = { "Purchase" })
 	public void submitOrder(HashMap<String, String> value) throws IOException, InterruptedException {
 
 		// drive object creation within page object classes encapsulating from test
@@ -69,21 +70,22 @@ public class SubmitOrderUsingHashMap extends BaseTest {
 		Boolean match = orderPage.verifyProductInOrdersPage(prodName);
 		Assert.assertTrue(match);
 	}
-
-	@DataProvider
-	public Object[][] getData() {
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("email", "dummyemailsrishti@gmail.com");
-		map.put("password", "Dummyemail2@");
-		map.put("prodName", "ADIDAS ORIGINAL");
-
-		HashMap<String, String> map1 = new HashMap<String, String>();
-		map1.put("email", "anshika@gmail.com");
-		map1.put("password", "Iamking@000");
-		map1.put("prodName", "ZARA COAT 3");
-
-		return new Object[][] { { map }, { map1 } };
-
-	}
+	/*
+	 * //this data provider, hashmap is created and data is added. Then the data is
+	 * returned
+	 * 
+	 * @DataProvider public Object[][] getDataHashMapInternal() { HashMap<String,
+	 * String> map = new HashMap<String, String>(); map.put("email",
+	 * "dummyemailsrishti@gmail.com"); map.put("password", "Dummyemail2@");
+	 * map.put("prodName", "ADIDAS ORIGINAL");
+	 * 
+	 * HashMap<String, String> map1 = new HashMap<String, String>();
+	 * map1.put("email", "anshika@gmail.com"); map1.put("password", "Iamking@000");
+	 * map1.put("prodName", "ZARA COAT 3");
+	 * 
+	 * return new Object[][] { { map }, { map1 } };
+	 * 
+	 * }
+	 */
 
 }
