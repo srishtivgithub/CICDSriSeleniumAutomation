@@ -1,0 +1,52 @@
+[
+  {
+    "scenario"        : "REG_TC_014 - Invalid Email Format",
+    "firstname"       : "Srishti",
+    "email"           : "srishtigmail.com",
+    "phone"           : "9876543210",
+    "password"        : "Test@1234",
+    "confirmpassword" : "Test@1234",
+    "errorField"      : "email",
+    "expectedError"   : "*Enter Valid Email"
+  },
+  {
+    "scenario"        : "REG_TC_016 - Password Mismatch",
+    "firstname"       : "Srishti",
+    "email"           : "srishti.mismatch@gmail.com",
+    "phone"           : "9876543210",
+    "password"        : "Test@1234",
+    "confirmpassword" : "Test@9999",
+    "errorField"      : "confirmpassword",
+    "expectedError"   : "Password and Confirm Password must match with each other."
+  },
+  {
+    "scenario"        : "REG_TC_018 - Short Phone Number",
+    "firstname"       : "Srishti",
+    "email"           : "srishti.short@gmail.com",
+    "phone"           : "98765",
+    "password"        : "Test@1234",
+    "confirmpassword" : "Test@1234",
+    "errorField"      : "phone",
+    "expectedError"   : "*Phone Number must be 10 digit"
+  },
+    {
+    "scenario"        : "REG_TC_025 - Boundary 9Digit Phone Number",
+    "firstname"       : "Srishti",
+    "email"           : "srishti.short@gmail.com",
+    "phone"           : "123456789",
+    "password"        : "Test@1234",
+    "confirmpassword" : "Test@1234",
+    "errorField"      : "phone",
+    "expectedError"   : "*Phone Number must be 10 digit"
+  },
+  {
+    "scenario"        : "REG_TC_025 - Boundary 11Digit Phone Number",
+    "firstname"       : "Srishti",
+    "email"           : "srishti.short@gmail.com",
+    "phone"           : "12345678912",
+    "password"        : "Test@1234",
+    "confirmpassword" : "Test@1234",
+    "errorField"      : "phone",
+    "expectedError"   : "*Phone Number must be 10 digit"
+  }
+]

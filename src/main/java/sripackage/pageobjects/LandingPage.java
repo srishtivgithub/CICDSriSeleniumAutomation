@@ -44,8 +44,8 @@ public class LandingPage extends AbstractComponents{
 		//sending object from here itself
 	}
 	
-	public void goTo() {
-		driver.get("https://rahulshettyacademy.com/client");
+	public void goTo(String url) {
+		driver.get(url);
 	}
 	
 	public String getErrorMessage() {

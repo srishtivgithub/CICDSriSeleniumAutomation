@@ -1,13 +1,18 @@
 package sripackage.AbstractComponents;
 
 import java.time.Duration;
+import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import sripackage.pageobjects.CartPage;
@@ -25,6 +30,8 @@ public class AbstractComponents {
 		this.driver=driver;
 		PageFactory.initElements(driver, this);
 	}
+	
+	
 
 	@FindBy(css="button[routerlink*='cart']")
 	WebElement cartHeader;
@@ -32,6 +39,34 @@ public class AbstractComponents {
 	@FindBy(xpath="//button[@routerlink='/dashboard/myorders']")
 	WebElement ordersHeader;
 	
+	@FindBy(xpath = "//button[contains(text(),'Sign Out')]")
+	    WebElement signOutButton;
+	
+	@FindBy(xpath = "//button[text()=' HOME ']")
+    WebElement homeHeader;
+
+	
+	   
+	public boolean isUserLoggedIn() {
+		waitForWebElementToAppear(signOutButton);
+		return signOutButton.isDisplayed();
+	}
+	public boolean isHomeHeaderVisible() {
+		waitForWebElementToAppear(homeHeader);
+		return homeHeader.isDisplayed();
+	}
+	public boolean isOrdersHeaderVisible() {
+		waitForWebElementToAppear(ordersHeader);
+		return ordersHeader.isDisplayed();
+	}
+	public boolean isCartHeaderVisible() {
+		waitForWebElementToAppear(cartHeader);
+		return cartHeader.isDisplayed();
+	}
+	public void clickHomeTab() {
+		waitForWebElementToAppear(homeHeader);
+		homeHeader.click();
+	}
 	public void waitForElementToAppear(By findBy) {
 		WebDriverWait w = new WebDriverWait(driver, Duration.ofSeconds(7));
 		w.until(ExpectedConditions.visibilityOfElementLocated(findBy));
@@ -40,11 +75,32 @@ public class AbstractComponents {
 	public void waitForWebElementToAppear(WebElement findBy) {
 		WebDriverWait w = new WebDriverWait(driver, Duration.ofSeconds(7));
 		w.until(ExpectedConditions.visibilityOf(findBy));
+		
 	}
 	
 	public void waitForElementToBeInvisible(WebElement element) {
 		WebDriverWait w = new WebDriverWait(driver, Duration.ofSeconds(7));
 		w.until(ExpectedConditions.invisibilityOf(element));
+	}
+	public void waitForUrlToLoad(String urlResource) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.urlContains(urlResource));
+        
+	}
+	
+	public void waitForVisibilityOfAllListOfWebElements(List<WebElement> elementList) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfAllElements(elementList));
+        
+	}
+	public void waitForVisibilityOfAllElementsLocatedBy(By locator) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+        
+	}
+	public void waitForTextToChangeInElement(WebElement element, String oldText) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElement(element, oldText)));
 	}
 	
 	public void sleep() throws InterruptedException {
@@ -66,4 +122,43 @@ public class AbstractComponents {
 		ordersHeader.click();
 		return new OrdersPage(driver);
 	}
+	public void selectFromDropdownByVisibleText(WebElement element, String text) {
+		Select s=new Select(element);
+		s.selectByVisibleText(text);
+	}
+	public void selectFromDropdownByValue(WebElement element, String value) {
+	    new Select(element).selectByValue(value);
+	    // selectByValue matches the 'value' HTML attribute
+	    // e.g. <option value="1: Doctor">Doctor</option> → pass "1: Doctor"
+	}
+
+	public void selectFromDropdownByIndex(WebElement element, int index) {
+	    new Select(element).selectByIndex(index);
+	    // selectByIndex → 0-based → index 0 = first option
+	}
+	public List<WebElement> getDropdownOptions(WebElement element) {
+	    return new Select(element).getOptions();
+	    // use this to ASSERT which option is currently selected
+	}
+	
+	public void getDropdownOptionByIndex(WebElement element, int index) {
+	    new Select(element).selectByIndex(index);
+	    // selectByIndex → 0-based → index 0 = first option
+	}
+	public Boolean isElementPresent(WebElement element) {
+		
+		 try {
+		        return element.isDisplayed();
+		    } catch (NoSuchElementException | StaleElementReferenceException e) {
+		        return false;
+		    }
+	}
+	
+	public String getCurrentUrl() {
+		String currentUrl = driver.getCurrentUrl();
+		return currentUrl;
+	}
+	
+	//javascript utitlity
 }
+

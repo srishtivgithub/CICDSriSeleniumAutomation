@@ -1,0 +1,9 @@
+
+[ {
+  "firstname" : "*First Name is required",
+  "email" : "*Email is required",
+  "phone" : "*Phone Number is required",
+  "password" : "*Password is required",
+  "confirmpassword" : "Confirm Password is required",
+  "agecheckbox" : "*Please check above checkbox"
+} ]

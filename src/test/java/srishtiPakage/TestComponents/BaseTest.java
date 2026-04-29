@@ -34,6 +34,8 @@ public class BaseTest {
 	public ChromeOptions options;
 	public LandingPage landingPage;
 	public Properties prop;
+	public String siteUrl;
+	
 	@SuppressWarnings("deprecation")
 	public WebDriver initializeDriver() throws IOException {
 		/*
@@ -91,12 +93,18 @@ public class BaseTest {
 		driver.manage().window().maximize();
 		return driver;
 	}
-	
+	public String getAppUrl() {
+		
+		siteUrl=System.getProperty("url")!=null ? System.getProperty("url") : prop.getProperty("url");
+		
+		return siteUrl;
+	}
 	@BeforeMethod(alwaysRun=true)//it will run always even though grouping applied
 	public LandingPage launchApplication() throws IOException {
 		driver=initializeDriver();
 		landingPage=new LandingPage(driver);
-		landingPage.goTo();
+	    siteUrl=getAppUrl();
+		landingPage.goTo(siteUrl);
 		return landingPage;
 	}
 
@@ -109,27 +117,13 @@ public class BaseTest {
 	public String getScreenshot(String testcaseName, WebDriver driver) throws IOException {
 		TakesScreenshot ss=(TakesScreenshot)driver;
 		File source=ss.getScreenshotAs(OutputType.FILE);
-		File file=new File(System.getProperty("user.dir")+"\\reports\\" +testcaseName+ ".png");
+		//File file=new File(System.getProperty("user.dir")+"\\reports\\" +testcaseName+ ".png");
+		File file=new File(System.getProperty("user.dir") + File.separator + "reports" + File.separator 
+				+ testcaseName + ".png");
 		FileUtils.copyFile(source, file);
 		return System.getProperty("user.dir")+"\\reports\\" +testcaseName+ ".png";
 	}
 
 	
-/*
- * public List<HashMap<String, String>> getDataJsonToMap(String filePath) throws
- * IOException {
- * 
- * //read json to string String jsonContent=FileUtils.readFileToString(new
- * File(filePath) ,StandardCharsets.UTF_8);
- * 
- * //string to hashmap-- by jackson databind denpendency ObjectMapper mapper=new
- * ObjectMapper();
- * 
- * //read values from json file and we want that hashmap to be in list
- * List<HashMap<String,String>> data=mapper.readValue(jsonContent, new
- * TypeReference<List<HashMap<String,String>>>(){ });//reading json string
- * values and converting hashmap inside jason to List
- * 
- * return data; } 
- */
+
 }

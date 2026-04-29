@@ -21,6 +21,7 @@ public class JdbcConnectionUtility {
 	private String user;
 	private String password;
 	
+	
 	public JdbcConnectionUtility(Properties prop) {
         this.host     = prop.getProperty("host");
         this.port     = prop.getProperty("port");
@@ -37,10 +38,12 @@ public class JdbcConnectionUtility {
 	 // Returns DB rows as List<HashMap> — same structure as your JSON DataProvider
     public List<HashMap<String, String>> getDataFromDB(String query) throws SQLException {
 
+    	Connection con=null;
+    	
         List<HashMap<String, String>> dataList = new ArrayList<>();
 
-        Connection con = DriverManager.getConnection(
-            "jdbc:mysql://" + host + ":" + port + "/" + dbName, user, password
+        try {
+          con= DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + dbName, user, password
         );
         
         Statement statement = con.createStatement();
@@ -52,9 +55,12 @@ public class JdbcConnectionUtility {
             row.put("password", resultSet.getString("password"));
             // Add more columns as needed
             dataList.add(row);
+          }
         }
+        finally {
         
-        con.close();
+        con.close(); //connection close
+        }
         return dataList;
 
   }

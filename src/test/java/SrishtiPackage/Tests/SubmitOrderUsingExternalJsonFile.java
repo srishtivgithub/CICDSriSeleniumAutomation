@@ -33,13 +33,14 @@ import srishtiPakage.TestComponents.BaseTest;
 
 public class SubmitOrderUsingExternalJsonFile extends BaseTest {
 
-	// by using dataprovider
-	String prodName = "ADIDAS ORIGINAL";
+	// ✅ private static final = it is a CONSTANT, not a variable
+    // clearly communicates — this value is FIXED and belongs to THIS test only
+    private static final String PROD_NAME = "ADIDAS ORIGINAL";
 
 	//dataProvider = "getData"->What method to call? ->method name= "getData"
 	//dataProviderClass = DataProviderUtility.class->Where to find that method?-> in DataProviderUtility.class
 	//when dataProvider is in external class, then must use dataProviderClass
-	@Test(dataProvider = "getData",dataProviderClass = DataProviderUtility.class, groups = { "Purchase" })
+	@Test(dataProvider = "getDataFromExternalFile",dataProviderClass = DataProviderUtility.class, groups = { "Purchase" })
 	public void submitOrder(HashMap<String, String> value) throws IOException, InterruptedException {
 
 		// drive object creation within page object classes encapsulating from test
@@ -57,9 +58,9 @@ public class SubmitOrderUsingExternalJsonFile extends BaseTest {
 
 		CheckOutPage checkoutPage = cartPage.clickCheckOut();
 
-		String countryName = "India";
+		//String countryName = "India";
 
-		checkoutPage.selectCountry(countryName);
+		checkoutPage.selectCountry(value.get("country"));
 
 		ConfirmationPage confirmPage = checkoutPage.clickPlaceOrderButton();
 
@@ -71,11 +72,11 @@ public class SubmitOrderUsingExternalJsonFile extends BaseTest {
 	// @Test(dependsOnMethods= {"submitOrder"})
 	@Test
 	public void checkOrderInOrders() {
-		ProductCataloguePage productCatalogue = landingPage.loginApplication("dummyemailsrishti@gmail.com",
-				"Dummyemail2@");
+		ProductCataloguePage productCatalogue = landingPage.loginApplication(prop.getProperty("userEmail"),
+				prop.getProperty("userPassword"));
 		OrdersPage orderPage = productCatalogue.goToOrders();
 
-		Boolean match = orderPage.verifyProductInOrdersPage(prodName);
+		Boolean match = orderPage.verifyProductInOrdersPage(PROD_NAME);
 		Assert.assertTrue(match);
 	}
 	/*

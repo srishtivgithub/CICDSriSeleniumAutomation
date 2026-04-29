@@ -15,6 +15,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import SrishtiPackage.data.DataProviderUtility;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import sripackage.pageobjects.CartPage;
 import sripackage.pageobjects.CheckOutPage;
@@ -25,12 +26,13 @@ import sripackage.pageobjects.ProductCataloguePage;
 import srishtiPakage.TestComponents.BaseTest;
 
 public class SubmitOrderTest extends BaseTest {
-	
-	//by using dataprovider
-	String prodName = "ADIDAS ORIGINAL";
+	// ✅ private static final = it is a CONSTANT, not a variable
+    // clearly communicates — this value is FIXED and belongs to THIS test only
+    private static final String PROD_NAME = "ADIDAS ORIGINAL";
+    //String prodName = "ADIDAS ORIGINAL";
 
-	@Test(dataProvider="getData" , groups= {"Purchase"})
-	public void submitOrder(String username, String password, String prodName) throws IOException, InterruptedException {
+	@Test(dataProvider="getData",dataProviderClass = DataProviderUtility.class , groups= {"Purchase"})
+	public void submitOrder(String username, String password, String prodName, String country) throws IOException, InterruptedException {
 
 		
 
@@ -73,9 +75,9 @@ public class SubmitOrderTest extends BaseTest {
 		CheckOutPage checkoutPage = cartPage.clickCheckOut();
 
 		// selecting country from auto suggest drop down
-		String countryName = "India";
+		//String countryName = "India";
 		// CheckOutPage checkoutPage=new CheckOutPage(driver);
-		checkoutPage.selectCountry(countryName);
+		checkoutPage.selectCountry(country);
 
 		// click on placeorder button
 		ConfirmationPage confirmPage = checkoutPage.clickPlaceOrderButton();
@@ -92,17 +94,18 @@ public class SubmitOrderTest extends BaseTest {
 	//@Test(dependsOnMethods= {"submitOrder"})
 	@Test
 	public void checkOrderInOrders() {
-		ProductCataloguePage productCatalogue = landingPage.loginApplication("dummyemailsrishti@gmail.com", "Dummyemail2@");
+		ProductCataloguePage productCatalogue = landingPage.loginApplication(prop.getProperty("userEmail"), prop.getProperty("userPassword"));
 		OrdersPage orderPage=productCatalogue.goToOrders();
 		
-		Boolean match=orderPage.verifyProductInOrdersPage(prodName);
+		Boolean match=orderPage.verifyProductInOrdersPage(PROD_NAME);
 		Assert.assertTrue(match);
 	}
 	
-	@DataProvider
-	public Object[][] getData() {
-		
-		return new Object[][] {{"dummyemailsrishti@gmail.com", "Dummyemail2@", "ADIDAS ORIGINAL"}, {"anshika@gmail.com","Iamking@000","ZARA COAT 3"}};
-	}
+	/*
+	 * @DataProvider public Object[][] getData() {
+	 * 
+	 * return new Object[][] {{"dummyemailsrishti@gmail.com", "Dummyemail2@",
+	 * "ADIDAS ORIGINAL"}, {"anshika@gmail.com","Iamking@000","ZARA COAT 3"}}; }
+	 */
 
 }

@@ -8,6 +8,7 @@ import java.util.List;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import SrishtiPackage.data.DataProviderUtility;
 import sripackage.resources.JdbcConnectionUtility;
 import srishtiPakage.TestComponents.BaseTest;
 
@@ -28,7 +29,7 @@ public class TestDBUsecase extends BaseTest{
 	
 	*/
 	
-	@Test(dataProvider = "getDBData")
+	@Test(dataProvider = "getDBData", dataProviderClass = DataProviderUtility.class)
     public void submitOrder(HashMap<String, String> value) throws IOException, InterruptedException {
 
         // prop is now accessible from BaseTest
@@ -38,7 +39,7 @@ public class TestDBUsecase extends BaseTest{
         // ... rest of your test steps
     }
 	
-	@DataProvider
+	/*@DataProvider
     public Object[][] getDBData() throws IOException, SQLException {
 
         // prop is initialized in @BeforeMethod → initializeDriver() → launchApplication()
@@ -51,7 +52,7 @@ public class TestDBUsecase extends BaseTest{
         for (int i = 0; i < data.size(); i++) {
             result[i][0] = data.get(i);
         }
-        return result;
+        return result;*/
 
-}
+
 }

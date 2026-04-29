@@ -1,0 +1,41 @@
+[
+{
+  "Scenario":"LOG_TC_004",
+  "Email": "dummyemailsrishti@gmail.com",
+  "Password": "WrongPass@99",
+  "ExpectedMsg" : "Incorrect email or password."
+},
+{
+    "Scenario":"LOG_TC_005",
+    "Email": "notregistered@gmail.com",
+   "Password": "Dummyemail2@",
+   "ExpectedMsg" : "Incorrect email or password."
+},
+{
+    "Scenario":"LOG_TC_006",
+    "Email": "srishtigmail.com",
+    "Password": "Dummyemail2@",
+    "ExpectedMsg" : "*Enter Valid Email"
+},
+{
+     "Scenario":"LOG_TC_007",
+      "Email": "",
+     "Password": "",
+     "ExpectedMsg1" : "*Email is required",
+     "ExpectedMsg2" : "*Password is required"
+},
+{
+     "Scenario":"LOG_TC_008",
+      "Email": "",
+     "Password": "Dummyemail2@",
+     "ExpectedMsg" : "*Email is required"
+},
+{
+   "Scenario":"LOG_TC_009",
+      "Email": "dummyemailsrishti@gmail.com",
+     "Password": "",
+       "ExpectedMsg" : "*Password is required"
+}
+
+]
+
