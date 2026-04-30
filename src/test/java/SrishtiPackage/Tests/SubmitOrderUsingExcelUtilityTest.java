@@ -5,7 +5,8 @@ import java.util.HashMap;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import srishtiPakage.TestComponents.BaseTest;
+
+import SrishtiPackage.TestComponents.BaseTest;
 import SrishtiPackage.data.DataProviderUtility;
 import sripackage.pageobjects.CartPage;
 import sripackage.pageobjects.CheckOutPage;

@@ -1,12 +1,10 @@
-package srishtiPakage.TestComponents;
+package SrishtiPackage.TestComponents;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
@@ -18,12 +16,11 @@ import org.testng.ITestResult;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
-import com.aventstack.extentreports.model.Log;
 
 import sripackage.resources.ExtentReporterNG;
 
 public class Listeners extends BaseTest implements ITestListener {
-
+	
 	ExtentReports extent = ExtentReporterNG.getReportObject();
 	ExtentTest test;
 	//for thread safety in parallel execution

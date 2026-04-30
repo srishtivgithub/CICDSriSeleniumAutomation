@@ -6,6 +6,7 @@ import java.util.List;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
+import SrishtiPackage.TestComponents.BaseTest;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -14,7 +15,6 @@ import sripackage.pageobjects.CheckOutPage;
 import sripackage.pageobjects.ConfirmationPage;
 import sripackage.pageobjects.LandingPage;
 import sripackage.pageobjects.ProductCataloguePage;
-import srishtiPakage.TestComponents.BaseTest;
 
 public class StepDefinitionImplementation extends BaseTest {
 

@@ -1,4 +1,4 @@
-package srishtiPakage.TestComponents;
+package SrishtiPackage.TestComponents;
 
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;

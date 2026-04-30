@@ -3,12 +3,12 @@ package SrishtiPackage.Tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import SrishtiPackage.TestComponents.AuthenticatedBaseTest;
+import SrishtiPackage.TestComponents.BaseTest;
 import sripackage.AbstractComponents.AbstractComponents;
 import sripackage.pageobjects.LandingPage;
 import sripackage.pageobjects.ProductCataloguePage;
 import sripackage.pageobjects.ViewPage;
-import srishtiPakage.TestComponents.AuthenticatedBaseTest;
-import srishtiPakage.TestComponents.BaseTest;
 
 public class ProductCatalogueTest extends BaseTest {
 

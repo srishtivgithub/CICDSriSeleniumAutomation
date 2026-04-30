@@ -7,9 +7,9 @@ import java.util.LinkedHashMap;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import SrishtiPackage.TestComponents.BaseTest;
 import SrishtiPackage.data.DataProviderUtility;
 import sripackage.pageobjects.RegistrationPage;
-import srishtiPakage.TestComponents.BaseTest;
 
 public class RegistrationNegativeTest extends BaseTest {
 

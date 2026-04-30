@@ -8,9 +8,9 @@ import java.util.List;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import SrishtiPackage.TestComponents.BaseTest;
 import SrishtiPackage.data.DataProviderUtility;
 import sripackage.resources.JdbcConnectionUtility;
-import srishtiPakage.TestComponents.BaseTest;
 
 public class TestDBUsecase extends BaseTest{
 	/*

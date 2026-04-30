@@ -15,6 +15,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import SrishtiPackage.TestComponents.BaseTest;
 import SrishtiPackage.data.DataProviderUtility;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import sripackage.pageobjects.CartPage;
@@ -23,7 +24,6 @@ import sripackage.pageobjects.ConfirmationPage;
 import sripackage.pageobjects.LandingPage;
 import sripackage.pageobjects.OrdersPage;
 import sripackage.pageobjects.ProductCataloguePage;
-import srishtiPakage.TestComponents.BaseTest;
 
 public class SubmitOrderTest extends BaseTest {
 	// ✅ private static final = it is a CONSTANT, not a variable

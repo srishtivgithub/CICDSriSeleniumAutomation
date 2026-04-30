@@ -5,11 +5,11 @@ import java.util.HashMap;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import SrishtiPackage.TestComponents.BaseTest;
 import SrishtiPackage.data.DataProviderUtility;
 import sripackage.AbstractComponents.AbstractComponents;
 import sripackage.pageobjects.LandingPage;
 import sripackage.pageobjects.RegistrationPage;
-import srishtiPakage.TestComponents.BaseTest;
 
 public class RegistrationPositiveTest extends BaseTest{
 
