@@ -28,7 +28,7 @@ public class Listeners extends BaseTest implements ITestListener {
 	//for logs
 	Logger log=LogManager.getLogger(Listeners.class);
 
-	WebDriver driver;
+	//WebDriver driver;
 
 	public void onTestStart(ITestResult result) {
 
@@ -37,7 +37,9 @@ public class Listeners extends BaseTest implements ITestListener {
 	}
 
 	public void onTestSuccess(ITestResult result) {
-		test.log(Status.PASS, "Test Passed");
+		extentTest.get().log(Status.PASS, "Test Passed");
+		//used above instead of below for parallel execution thread safety
+		//test.log(Status.PASS, "Test Passed");
 	}
 
 	public void onTestFailure(ITestResult result) {
@@ -46,8 +48,13 @@ public class Listeners extends BaseTest implements ITestListener {
 		extentTest.get().fail(result.getThrowable());
 		
 		//Log Selenium exception/errors
+		
 		if(result.getThrowable()!=null) {
-			log.error("Test Failed: "+result.getMethod().getMethodName(),"Failure Reason:" +result.getThrowable());
+			log.error("Test Failed: {} | Failure Reason: {}", 
+			          result.getMethod().getMethodName(), 
+			          result.getThrowable().getMessage());
+			//used above instead of below so that Failure reason also comes in console
+			//log.error("Test Failed: "+result.getMethod().getMethodName(),"Failure Reason:" +result.getThrowable());
 		}
 
 		// getting driver specific to test method and giving life to driver here

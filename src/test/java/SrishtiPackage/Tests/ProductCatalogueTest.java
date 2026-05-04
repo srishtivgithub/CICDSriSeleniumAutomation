@@ -14,14 +14,14 @@ public class ProductCatalogueTest extends BaseTest {
 
 	LandingPage landingPage;
 	ProductCataloguePage productCataloguePage;
-	AbstractComponents ac;
+	//AbstractComponents ac;
 	////PC_TC_001
 	@Test(priority=1,enabled=false)
 	public void verifyProductCatalogueLoadsAfterSuccessfulLogin() {
 		landingPage=new LandingPage(driver);
-		ac=new AbstractComponents(driver);
+		//ac=new AbstractComponents(driver);
 		productCataloguePage=landingPage.loginApplication(prop.getProperty("userEmail"), prop.getProperty("userPassword"));
-		Assert.assertTrue(ac.isUserLoggedIn(), "Login was not successful and Signout header not visible");
+		Assert.assertTrue(productCataloguePage.isUserLoggedIn(), "Login was not successful and Signout header not visible");
 		Assert.assertTrue(productCataloguePage.isProductCataloguePageOpen(), "Product Page is not opened");
 	}
 	//PC_TC_004

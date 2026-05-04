@@ -38,11 +38,16 @@ public class ProductCataloguePage extends AbstractComponents {
 	@FindBy(xpath = "//div[not(contains(@class,'p-4'))]/input[@name='search' and @placeholder='search']")
 	WebElement productSearchBar;
 
-	@FindBy(css = "div[class*='col-lg-4 ']")
+	@FindBy(xpath = "//div[contains(@class,'col-lg-4 ')]")
 	List<WebElement> productCards;
 
 	@FindBy(xpath = "//div[contains(@class,'col-lg-4 ')]//following::b")
 	List<WebElement> productNamesInCard;
+	
+	@FindBy(xpath = "//div[@class='card-body']//b//parent::h5//following-sibling::button[2]")
+	List<WebElement> addToCartButtons;
+	
+	//div[@class='card-body']//b//parent::h5//following-sibling::button[2]
 
 	@FindBy(xpath = "//div[@id='res']")
 	WebElement showResults;
@@ -62,6 +67,9 @@ public class ProductCataloguePage extends AbstractComponents {
 	@FindBy(xpath = "//div[@class='card-body']//b")
 	WebElement productName;
 	
+	@FindBy(xpath="//div[@class='card-body']")
+	WebElement productMiniCards;
+	
 	@FindBy(xpath = "//div[@class='card-body']//div/div")
 	WebElement productPrice;
 		
@@ -71,6 +79,8 @@ public class ProductCataloguePage extends AbstractComponents {
 	By toastContainer = By.id("toast-container");
 	By productCardsBy = By.cssSelector("div[class*='col-lg-4 ']");
 	By productPriceBy=By.xpath("//div[@class='card-body']/div/div");
+	By productElement=By.xpath("//div[contains(@class,'col-lg-4 ')]//b");
+	
 
 	public boolean showResultCount() {
 		String str=showResults.getText();
@@ -109,6 +119,7 @@ public class ProductCataloguePage extends AbstractComponents {
 		if(!isElementPresent(viewButton)) {
 			System.out.println("View button not present in catalogue page");
 		}
+	
 		viewButton.click();
 	}
 	public boolean verifyProductCardDetail(String productName, String price) {
@@ -206,15 +217,23 @@ public class ProductCataloguePage extends AbstractComponents {
 		
 		waitForVisibilityOfAllElementsLocatedBy(productCardsBy);
 		//get initial cart count
-		
+		System.out.println("product given:"+product);
 		int itemAdded=0;
 		boolean flag=false;
 		if(productCards.isEmpty()) {
 			System.out.println("no products in catalogue page");
 		}
-		for(int i=0;i<productCards.size();i++) {
-			if(productCards.get(i).getText().equalsIgnoreCase(product)) {
-				productCards.get(i).findElement(addToCart).click();
+		//productCards
+		for(int i=0;i<productNamesInCard.size();i++) {
+			WebElement productEle=productNamesInCard.get(i);
+			String getProduct=productEle.getText();
+			System.out.println(getProduct);
+			if(getProduct.equalsIgnoreCase(product)) {
+				addToCartButtons.get(i).click();
+				
+				waitForElementToAppear(toastContainer);
+
+				waitForElementToBeInvisible(spinner);
 				itemAdded++;
 				flag=true;
 				//break;
@@ -272,6 +291,11 @@ public class ProductCataloguePage extends AbstractComponents {
 		// w.until(ExpectedConditions.invisibilityOf(driver.findElement(By.cssSelector(".ng-animating"))));
 		waitForElementToBeInvisible(spinner);
 
+	}
+public void AddProductToCart02(String product) {
+		
+		
+		
 	}
 
 }

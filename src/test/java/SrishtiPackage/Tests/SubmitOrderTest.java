@@ -28,7 +28,7 @@ import sripackage.pageobjects.ProductCataloguePage;
 public class SubmitOrderTest extends BaseTest {
 	// ✅ private static final = it is a CONSTANT, not a variable
     // clearly communicates — this value is FIXED and belongs to THIS test only
-    private static final String PROD_NAME = "ADIDAS ORIGINAL";
+    private static final String PROD_NAME = "ZARA COAT 3";
     //String prodName = "ADIDAS ORIGINAL";
 
 	@Test(dataProvider="getData",dataProviderClass = DataProviderUtility.class , groups= {"Purchase"})

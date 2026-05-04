@@ -70,7 +70,7 @@ public class AbstractComponents {
 	public void waitForElementToAppear(By findBy) {
 		WebDriverWait w = new WebDriverWait(driver, Duration.ofSeconds(7));
 		w.until(ExpectedConditions.visibilityOfElementLocated(findBy));
-	}
+			}
 	
 	public void waitForWebElementToAppear(WebElement findBy) {
 		WebDriverWait w = new WebDriverWait(driver, Duration.ofSeconds(7));
@@ -112,6 +112,7 @@ public class AbstractComponents {
 		//driver.findElement(By.cssSelector("button[routerlink*='cart']")).click();
 		
 		//note:as addcart button is common thus we used it in abstract class
+		waitForWebElementToAppear(cartHeader);
 		cartHeader.click();
 		return new CartPage(driver);
 				

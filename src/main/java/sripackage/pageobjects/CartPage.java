@@ -28,6 +28,13 @@ public class CartPage extends AbstractComponents {
 	@FindBy(xpath="//*[@class='cartSection']//h3")
 	List<WebElement> cartProducts;
 	
+	@FindBy(xpath="//h1[text()='No Products in Your Cart !']")
+	WebElement emptyCartMsg;
+	
+	By cartRows=By.xpath("//div[@class='infoWrap']");
+	By nameInCartRow=By.xpath("//div[@class='infoWrap']//following::h3");
+	By deleteButtonInCartRow=By.xpath("//div[@class='infoWrap']//following::button[contains(@class,'danger')]");
+	
 	@FindBy(css="div[class*='subtotal'] button[class*='btn-primary']")
 	WebElement checkOutButton;
 	
@@ -43,7 +50,46 @@ public class CartPage extends AbstractComponents {
 		
 		return new CheckOutPage(driver);
 	}
+	public boolean verifyProductinCartPage(String productName) {
+		for(int i=0;i<cartProducts.size();i++) {
+			if(cartProducts.get(i).getText().equalsIgnoreCase(productName)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	public List<WebElement> getCartRows() {
 	
+	
+		
+		waitForElementToAppear(cartRows);
+		return driver.findElements(cartRows);
+	}
+	public void getcartProductCount() {
+		
+	}
+	
+	public void deleteItemInCart(String productName) {
+		List<WebElement> cartRows=getCartRows();
+		
+		for(int i=0;i<cartRows.size();i++) {
+			if(cartRows.get(i).findElement(nameInCartRow).getText().equalsIgnoreCase(productName)) {
+				cartRows.get(i).findElement(deleteButtonInCartRow).click();
+				//verify red banner
+			}
+		}
+	}
+	public boolean isProductDeletedFromCart(String productName) throws InterruptedException {
+		Thread.sleep(3000);
+        List<WebElement> cartRows=getCartRows();
+		
+		for(int i=0;i<cartRows.size();i++) {
+			if(cartRows.get(i).findElement(nameInCartRow).getText().equalsIgnoreCase(productName)) {
+				return false;
+			}
+		}
+		return true;
+	}
 
 	
 	

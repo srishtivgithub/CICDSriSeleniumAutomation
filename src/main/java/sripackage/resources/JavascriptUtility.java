@@ -152,6 +152,21 @@ public class JavascriptUtility {
          targetElement
      );
  }
+	//highlight 
+	public static void highlightFailingElement(WebElement element, WebDriver driver) {
+	    try {
+	        JavascriptExecutor js = (JavascriptExecutor) driver;
+	        js.executeScript(
+	            "arguments[0].style.border='3px solid red';" +
+	            "arguments[0].style.outline='2px solid red';" +
+	            "arguments[0].style.boxShadow='0 0 6px red';",
+	            element
+	        );
+	        Thread.sleep(300); // brief pause so screenshot captures the red border
+	    } catch (Exception e) {
+	        // silently skip — never let highlight failure break the report
+	    }
+	}
 
 	
 	/*
