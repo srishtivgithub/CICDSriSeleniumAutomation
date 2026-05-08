@@ -9,6 +9,7 @@ import SrishtiPackage.TestComponents.BaseTest;
 import SrishtiPackage.data.DataProviderUtility;
 import sripackage.AbstractComponents.AbstractComponents;
 import sripackage.pageobjects.LandingPage;
+import sripackage.pageobjects.ProductCataloguePage;
 import sripackage.pageobjects.RegistrationPage;
 
 public class RegistrationPositiveTest extends BaseTest{
@@ -45,9 +46,9 @@ public class RegistrationPositiveTest extends BaseTest{
 		registrationPage.clickRegisterLinkFromLoginPage();
 		registrationPage.userRegisterWithMandatoryDetails(map);
 		LandingPage landingPage=registrationPage.nagivateToLoginPageAfterUserRegister();
-		landingPage.loginApplication(map.get("email"),map.get("password"));
-		AbstractComponents ac=new AbstractComponents(driver);
-		Boolean flag=ac.isUserLoggedIn();
+		ProductCataloguePage pc=landingPage.loginApplication(map.get("email"),map.get("password"));
+		//AbstractComponents ac=new AbstractComponents(driver);
+		Boolean flag=pc.isUserLoggedIn();
 		Assert.assertTrue(flag, "Login was not successful");
 	}
 	

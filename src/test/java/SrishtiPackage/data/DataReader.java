@@ -20,6 +20,7 @@ public class DataReader {
 	//
 	public static List<HashMap<String, String>> getDataJsonToMap(String filePath) throws IOException {
 
+		
 		// read json to string
 		String jsonContent = FileUtils.readFileToString(new File(filePath), StandardCharsets.UTF_8);
 

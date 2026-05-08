@@ -10,6 +10,7 @@ import SrishtiPackage.data.DataProviderUtility;
 import sripackage.AbstractComponents.AbstractComponents;
 import sripackage.pageobjects.LandingPage;
 import sripackage.pageobjects.LoginPage;
+import sripackage.pageobjects.ProductCataloguePage;
 import sripackage.pageobjects.RegistrationPage;
 
 public class LoginPositiveTest extends BaseTest{
@@ -21,13 +22,13 @@ public class LoginPositiveTest extends BaseTest{
 	public void loginWithValidCredential() {
 		
 	    landingPage=new LandingPage(driver);
-		landingPage.loginApplication(prop.getProperty("userEmail"), prop.getProperty("userPassword"));
-		ac=new AbstractComponents(driver);
+	    ProductCataloguePage pc=landingPage.loginApplication(prop.getProperty("userEmail"), prop.getProperty("userPassword"));
+		//ac=new AbstractComponents(driver);
 		
-		Assert.assertTrue(ac.isUserLoggedIn(), "Login was not successful and Signout header not visible");
-		Assert.assertTrue(ac.isHomeHeaderVisible(), "Login was not successful and Home header not visible");
-		Assert.assertTrue(ac.isOrdersHeaderVisible(), "Login was not successful and Orders header not visible");
-		Assert.assertTrue(ac.isCartHeaderVisible(), "Login was not successful and Cart header not visible");
+		Assert.assertTrue(pc.isUserLoggedIn(), "Login was not successful and Signout header not visible");
+		Assert.assertTrue(pc.isHomeHeaderVisible(), "Login was not successful and Home header not visible");
+		Assert.assertTrue(pc.isOrdersHeaderVisible(), "Login was not successful and Orders header not visible");
+		Assert.assertTrue(pc.isCartHeaderVisible(), "Login was not successful and Cart header not visible");
 		
 	}
 	//LOG_TC_010

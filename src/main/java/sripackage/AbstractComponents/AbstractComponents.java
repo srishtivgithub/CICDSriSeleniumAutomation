@@ -45,7 +45,7 @@ public class AbstractComponents {
 	@FindBy(xpath = "//button[text()=' HOME ']")
     WebElement homeHeader;
 
-	
+//	public abstract boolean isPageLoaded();
 	   
 	public boolean isUserLoggedIn() {
 		waitForWebElementToAppear(signOutButton);

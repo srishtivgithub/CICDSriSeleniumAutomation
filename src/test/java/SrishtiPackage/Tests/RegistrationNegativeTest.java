@@ -14,7 +14,7 @@ import sripackage.pageobjects.RegistrationPage;
 public class RegistrationNegativeTest extends BaseTest {
 
 	@Test(priority=1, dataProvider = "getRegistrationMandatoryValidationFieldData", dataProviderClass = DataProviderUtility.class
-			,enabled=false)
+			)
 	public void registerWithAllEmptyFields(HashMap<String,String> expectedMap) {
 		RegistrationPage registrationPage=new RegistrationPage(driver);
 		registrationPage.clickRegisterLinkFromLoginPage();
@@ -31,7 +31,7 @@ public class RegistrationNegativeTest extends BaseTest {
 		
 		}
 	@Test(priority=2, dataProvider = "getInvalidRegistrationData", dataProviderClass = DataProviderUtility.class
-			,enabled=true)
+			)
 	public void registerWithInvalidInputsShouldShowInlineErrors(HashMap<String,String> invalidRegisterMap) {
 		RegistrationPage registrationPage=new RegistrationPage(driver);
 		registrationPage.clickRegisterLinkFromLoginPage();
@@ -57,7 +57,7 @@ public class RegistrationNegativeTest extends BaseTest {
 	}
 	
 	@Test(priority=3, dataProvider = "getRegistrationData", dataProviderClass = DataProviderUtility.class
-			,enabled=false)
+			)
 	public void registerWithalreadyRegisteredEmail(HashMap<String,String> map) {
 		RegistrationPage registrationPage=new RegistrationPage(driver);
 		 // ── PREREQUISITE — register user for first time ──────────────────
@@ -76,7 +76,7 @@ public class RegistrationNegativeTest extends BaseTest {
 		        + " | Email used: " + map.get("email"));
 	}
 	
-	@Test(priority=4,enabled=false)
+	@Test(priority=4)
 	public void verifyPasswordMasking(HashMap<String,String> map) {
 		RegistrationPage registrationPage=new RegistrationPage(driver);
 		registrationPage.clickRegisterLinkFromLoginPage();

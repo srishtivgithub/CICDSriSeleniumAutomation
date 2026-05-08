@@ -1,3 +1,4 @@
+
 package sripackage.resources;
 
 import com.aventstack.extentreports.ExtentReports;
@@ -10,6 +11,7 @@ public class ExtentReporterNG {
 		ExtentSparkReporter reporter=new ExtentSparkReporter(path);
 		reporter.config().setReportName("Srishti Web Automation Results");
 		reporter.config().setDocumentTitle("Srishti Test Results");
+		
 		
 		ExtentReports extent=new ExtentReports();
 		extent.attachReporter(reporter);
