@@ -117,12 +117,13 @@
 			<artifactId>javafaker</artifactId>
 			<version>1.0.2</version>
 		</dependency>
-<!-- removed this dependency as it was causing Build Failure in Jenkins -->
+<!-- removed this dependency as it was causing Build Failure in Jenkins 
 		<dependency>
 			<groupId>SeleniumFrameworkSriReports</groupId>
 			<artifactId>ExtentReports</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		-->
 	</dependencies>
 
 	<profiles>
@@ -203,6 +204,7 @@
 			<plugins>
 				<!-- clean lifecycle, see
 				https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
+				<!--  removed this as jenkins gave warning due to multiple surefire plugins
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
@@ -213,6 +215,7 @@
 						</suiteXmlFiles>
 					</configuration>
 				</plugin>
+				-->
 				<plugin>
 					<artifactId>maven-clean-plugin</artifactId>
 					<version>3.1.0</version>
@@ -227,10 +230,12 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>3.8.0</version>
 				</plugin>
+				<!-- removed this as jenkins throwed error for multiple surefire plugins
 				<plugin>
 					<artifactId>maven-surefire-plugin</artifactId>
 					<version>2.22.1</version>
 				</plugin>
+				-->
 				<plugin>
 					<artifactId>maven-jar-plugin</artifactId>
 					<version>3.0.2</version>
