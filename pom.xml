@@ -117,7 +117,7 @@
 			<artifactId>javafaker</artifactId>
 			<version>1.0.2</version>
 		</dependency>
-
+<!-- removed this dependency as it was causing Build Failure in Jenkins -->
 		<dependency>
 			<groupId>SeleniumFrameworkSriReports</groupId>
 			<artifactId>ExtentReports</artifactId>
