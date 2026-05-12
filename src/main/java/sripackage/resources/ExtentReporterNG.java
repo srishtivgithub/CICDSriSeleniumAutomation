@@ -11,7 +11,8 @@ public class ExtentReporterNG {
 		ExtentSparkReporter reporter=new ExtentSparkReporter(path);
 		reporter.config().setReportName("Srishti Web Automation Results");
 		reporter.config().setDocumentTitle("Srishti Test Results");
-		
+		//for css fix in extent reports from jenkins
+		reporter.config().setOfflineMode(true);
 		
 		ExtentReports extent=new ExtentReports();
 		extent.attachReporter(reporter);
