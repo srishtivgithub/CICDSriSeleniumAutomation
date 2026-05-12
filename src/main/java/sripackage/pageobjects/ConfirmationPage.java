@@ -17,7 +17,6 @@ public class ConfirmationPage extends AbstractComponents {
 
 	public ConfirmationPage(WebDriver driver) {
 		super(driver);
-		// TODO Auto-generated constructor stub
 		// initialization
 		this.driver = driver; // giving life to current class driver, driver coming from base class
 

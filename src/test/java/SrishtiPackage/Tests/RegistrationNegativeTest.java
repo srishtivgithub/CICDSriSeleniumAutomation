@@ -76,7 +76,7 @@ public class RegistrationNegativeTest extends BaseTest {
 		        + " | Email used: " + map.get("email"));
 	}
 	
-	@Test(priority=4)
+	@Test(priority=4,dataProvider = "getRegistrationData" , dataProviderClass = DataProviderUtility.class)
 	public void verifyPasswordMasking(HashMap<String,String> map) {
 		RegistrationPage registrationPage=new RegistrationPage(driver);
 		registrationPage.clickRegisterLinkFromLoginPage();

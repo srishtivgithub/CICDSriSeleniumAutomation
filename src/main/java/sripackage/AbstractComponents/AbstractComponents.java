@@ -92,6 +92,7 @@ public class AbstractComponents {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfAllElements(elementList));
         
+        
 	}
 	public void waitForVisibilityOfAllElementsLocatedBy(By locator) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -160,6 +161,5 @@ public class AbstractComponents {
 		return currentUrl;
 	}
 	
-	//javascript utitlity
 }
 
