@@ -22,6 +22,7 @@ public class JavascriptUtility {
 	// waitForWebElementToAppear fails due to scroll needed
 	public void scrollIntoView(WebElement element) {
 		js.executeScript("arguments[0].scrollIntoView(true);", element);
+		
 	}
 
 	// 2. JS Click — bypass normal Selenium click

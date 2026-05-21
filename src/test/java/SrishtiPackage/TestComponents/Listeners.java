@@ -25,7 +25,7 @@ public class Listeners extends BaseTest implements ITestListener {
 	ExtentTest test;
 	//for thread safety in parallel execution
 	ThreadLocal<ExtentTest> extentTest = new ThreadLocal<ExtentTest>();
-	//for logs
+	//below is for logs 
 	Logger log=LogManager.getLogger(Listeners.class);
 
 	//WebDriver driver;

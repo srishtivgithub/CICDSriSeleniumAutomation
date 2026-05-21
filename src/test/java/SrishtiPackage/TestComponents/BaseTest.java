@@ -126,7 +126,11 @@ public class BaseTest {
 		//return destinationFile.toString();
 		//used below instead of above as image was broken in extentreport due to filepath
 		return testcaseName + ".png";
+		
+		
 	}
+	
+
 
 	
 

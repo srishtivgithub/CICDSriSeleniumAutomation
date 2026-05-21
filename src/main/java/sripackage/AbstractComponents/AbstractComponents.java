@@ -87,6 +87,11 @@ public class AbstractComponents {
         wait.until(ExpectedConditions.urlContains(urlResource));
         
 	}
+	public void frameISAvailable(By by) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(by));
+        
+	}
 	
 	public void waitForVisibilityOfAllListOfWebElements(List<WebElement> elementList) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -99,9 +104,9 @@ public class AbstractComponents {
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
         
 	}
-	public void waitForTextToChangeInElement(WebElement element, String oldText) {
+	public void waitForTextToChangeInElement(WebElement element, String text) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElement(element, oldText)));
+		wait.until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElement(element, text)));
 	}
 	
 	public void sleep() throws InterruptedException {
